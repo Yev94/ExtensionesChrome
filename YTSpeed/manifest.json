@@ -1,0 +1,19 @@
+{
+    "name": "YTSpeed",
+    "description": "Pon la velocidad doble automáticamente",
+    "version": "1.0",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts" : [{
+        "js" : ["content.js"],
+        "matches" : ["https://www.youtube.com/watch*"],
+        "css": ["style.css"]
+    }],
+    "action" : {
+        "default_popup" : "popup.html"
+    },
+    "permissions": ["storage", "scripting", "tabs", "activeTab", "notifications"],
+    "host_permissions": ["<all_urls>"]
+}

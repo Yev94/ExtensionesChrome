@@ -1,0 +1,20 @@
+{
+    "name": "PageThemes",
+    "description": "Cambia el tema de las páginas al color deseado",
+    "version": "1.0",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts" : [{
+        "js" : ["content.js"],
+        "matches" : ["<all_urls>"]
+    }],
+    "permissions": ["storage", "scripting", "tabs", "activeTab"],
+    "web_accessible_resources": [
+        {
+            "resources": [ "style.css" ],
+            "matches": [ "<all_urls>" ]
+        }
+    ]
+}
