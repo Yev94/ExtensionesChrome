@@ -24,7 +24,7 @@ function checkIfMusic() {
     })
 }
 
-function checkMyList(){
+function checkMyListMusic(){
     let url = window.location.href;
     let reg = /list=PLuw5co6keDB7d-RA2R4nE9P5Hz8u8-OsJ/gi
     return reg.test(url);
@@ -69,7 +69,7 @@ function getHeaderMenu() {
 }
 
 chrome.storage.sync.get('velocidad', (async ({ velocidad }) => {
-    let isMyList = checkMyList();
+    let isMyList = checkMyListMusic();
     let isMusic = await checkIfMusic();
     if (isMusic || isMyList) velocidad = 'Normal';
     
