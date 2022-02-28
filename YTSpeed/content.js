@@ -1,11 +1,16 @@
+//TODO: Crear una zona para excluir zonas de reproducción
 
+class YTSpeed {
 
-velocidadReproduccion = {
-    '2': 8,
-    '1.75': 7,
-    '1.5': 6,
-    '1.25': 5,
-    'Normal': 4,
+    constructor() {
+        this.velocidadReproduccion = {
+            '2': 8,
+            '1.75': 7,
+            '1.5': 6,
+            '1.25': 5,
+            'Normal': 4,
+        }
+    }
 }
 
 function checkIfMusic() {
@@ -22,9 +27,8 @@ function checkIfMusic() {
         }
         resolve(match);
     })
-}
 
-function checkMyListMusic(){
+function checkMyListMusic() {
     let url = window.location.href;
     let reg = /list=PLuw5co6keDB7d-RA2R4nE9P5Hz8u8-OsJ/gi
     return reg.test(url);
@@ -68,14 +72,22 @@ function getHeaderMenu() {
     })
 }
 
-chrome.storage.sync.get('velocidad', (async ({ velocidad }) => {
+function activate(velocidad){
+    
     let isMyList = checkMyListMusic();
     let isMusic = await checkIfMusic();
     if (isMusic || isMyList) velocidad = 'Normal';
     
     let velocidadYT = await clickOnPlaybackSpeedElement(velocidad);
     if (velocidad == 'Normal') await getHeaderMenu();
-
+    
     document.querySelectorAll(`.ytp-panel-menu > div:nth-child(${velocidadYT}) > div`)[0]?.click();
     document.querySelectorAll(".ytp-settings-button")[0]?.click();
+}
+}
+
+
+chrome.storage.sync.get('velocidad', (async ({ velocidad }) => {
+    let changeYTSpeed = new YTSpeed;
+    changeYTSpeed.activate(velocidad);
 }));
