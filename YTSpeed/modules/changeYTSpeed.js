@@ -73,16 +73,23 @@ export class ChangeYTSpeed {
         })
     }
 
-    async activate(velocidad) {
-
+    async run(velocidad) {
+        console.log('heey');
+        
         let isMyList = this.checkMyListMusic();
         let isMusic = await this.checkIfMusic();
         if (isMusic || isMyList) velocidad = 'Normal';
-
+        
         let velocidadYT = await this.clickOnPlaybackSpeedElement(velocidad);
         if (velocidad == 'Normal') await this.getHeaderMenu();
-
+        
         document.querySelectorAll(`.ytp-panel-menu > div:nth-child(${velocidadYT}) > div`)[0]?.click();
         document.querySelectorAll(".ytp-settings-button")[0]?.click();
+    }
+
+    activate(velocidad){
+        let video = document.querySelector('title');
+        this.run(velocidad);
+        video.addEventListener('DOMNodeInserted', () => this.run(velocidad));
     }
 }

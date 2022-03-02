@@ -41,22 +41,18 @@ export class changePageTheme {
     }
 
     activate() {
-        window.onload = () => {
+        let isInList = this.checkURL();
+        if (isInList) return
 
-            let isInList = this.checkURL();
-            if (isInList) return
+        this.addStyleSheet();
 
-            this.addStyleSheet();
+        let body = document.getElementsByTagName('body');
+        this.reviewEachDOMElement(body);
 
-            let body = document.getElementsByTagName('body');
-            this.reviewEachDOMElement(body);
-
-            (async () => {
-                while (true) {
-                    await this.reviewAgainWaitingTime(500);
-                }
-            })();
-
-        }
+        (async () => {
+            while (true) {
+                await this.reviewAgainWaitingTime(500);
+            }
+        })();
     }
 }

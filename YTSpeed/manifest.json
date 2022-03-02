@@ -15,7 +15,12 @@
     "action" : {
         "default_popup" : "popup.html"
     },
-    "permissions": ["storage", "scripting", "tabs", "activeTab", "notifications"],
+    "permissions": [
+        "storage",  
+        "scripting", 
+        "tabs", 
+        "activeTab"
+    ],
     "host_permissions": ["<all_urls>"],
     "web_accessible_resources": [
         {

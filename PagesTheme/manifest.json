@@ -10,11 +10,17 @@
         "js" : ["content.js"],
         "matches" : ["<all_urls>"]
     }],
-    "permissions": ["storage", "scripting", "tabs", "activeTab"],
+    "permissions": [
+        "storage", 
+        "scripting", 
+        "tabs", 
+        "activeTab"
+    ],
+    "host_permissions": ["<all_urls>"],
     "web_accessible_resources": [
         {
             "resources": [ "style.css", "modules/changePageTheme.js" ],
             "matches": [ "<all_urls>" ]
         }
     ]
-}
+}   
